@@ -44,7 +44,7 @@ local function updateRPC()
 		end
 
 		if (IsInLoading()) then
-			rpc_data["details"] = "Joining a " .. (ip ~= "0.0.0.0:0" and "server" or "game")
+			rpc_data["details"] = "Joining a " .. (ip == "0.0.0.0:0" and "game" or "server")
 
 			if (convar_showserverinfo and ip ~= "0.0.0.0:0") then
 				rpc_data["state"] = ip
