@@ -25,9 +25,9 @@ local function updateRPC()
 
 		local user = util.JSONToTable(body_user)
 
-		if (not user["response"]["players"]) then return end
-
 		local userData = user["response"]["players"][1]
+
+		if (not user or not user["response"] or not user["response"]["players"] or not userData) then return end
 
 		local _id = userData["gameserversteamid"]
 		local _ip = userData["gameserverip"]
@@ -67,9 +67,9 @@ local function updateRPC()
 
 				local server = util.JSONToTable(body_server)
 
-				if (not server["response"]["servers"]) then return end
-
 				local serverData = server["response"]["servers"][1]
+
+				if (not server or not server["response"] or not user["response"]["servers"] or not serverData) then return end
 
 				if (serverData["dedicated"]) then
 					rpc_data["details"] = convar_showserverinfo and serverData["name"] or "Multiplayer"
