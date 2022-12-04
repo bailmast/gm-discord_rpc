@@ -25,6 +25,8 @@ local function updateRPC()
 
 		local user = util.JSONToTable(body_user)
 
+		if (not user["response"]["players"]) then return end
+
 		local userData = user["response"]["players"][1]
 
 		local _id = userData["gameserversteamid"]
@@ -64,6 +66,8 @@ local function updateRPC()
 				if (code_server ~= 200) then return end
 
 				local server = util.JSONToTable(body_server)
+
+				if (not server["response"]["servers"]) then return end
 
 				local serverData = server["response"]["servers"][1]
 
